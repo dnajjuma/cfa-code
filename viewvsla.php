@@ -42,24 +42,10 @@ include('includes/topbar.php');
                 <thead>
                     <tr>
                         <th>#</th>
-                        <!-- <th> Image </th> -->
                         <th> VSLA </th>
-                        <!-- <th> Chairperson </th> -->
                         <th> Details </th>
-                        <!-- <th> Capacity </th>
-                        <th> Location </th>
-                        <th> Status </th>
-                       
-                        
-                        <!-- <th> Activity </th> -->
                         <th> Gender </th>
-                        <!-- <th> Males </th> -->
-                        <!-- <th> Females </th> -->
                         <th> Stats </th>
-                        <!-- <th> Savings </th> -->
-                        <!-- <th> Average age </th> -->
-                        <!-- <th> Credit Unit </th> -->
-                        <!-- <th> Rate of Lending </th> -->
                         <th> Year </th>
                         <th> Shareouts </th>
                         
