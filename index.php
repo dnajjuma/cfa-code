@@ -59,7 +59,7 @@ include('includes/topbar.php');
                                 Total VSLAs</div>
                             <?php
                             require 'database/dbconfig.php';
-                            $query = "SELECT id FROM tbl_vsla ORDER BY id";
+                            $query = "SELECT id FROM tbl_groups ORDER BY id";
                             $query_run = mysqli_query($connection, $query);
 
                             $row = mysqli_num_rows($query_run);

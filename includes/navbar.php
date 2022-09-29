@@ -4,7 +4,8 @@
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand mt-4 d-flex align-items-center justify-content-center" href="index.php">
     <div class="">
-    <p style="font-size:15px;">Community Fund Advisor</p>  
+    <p style="font-size:15px;">Community Fund Advisor</p>
+    <p>DASHBOARD</p>  
     </div>
     
 
