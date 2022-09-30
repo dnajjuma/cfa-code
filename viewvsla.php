@@ -1,4 +1,5 @@
 <?php
+include('fundadvisor/ml-requests.php');
 include('security.php');
 //session_start();
 include('includes/header.php');
@@ -48,9 +49,13 @@ include('includes/topbar.php');
                         <th> Stats </th>
                         <th> Year </th>
                         <th> Shareouts </th>
-                        
+
                         <th> EDIT </th>
                         <th> DELETE </th>
+                        
+                        <th> Predictions </th>
+                        <!-- <th> Predict Loans Taken </th> -->
+                        <!-- <th> Predict Next beneficiary </th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -60,51 +65,56 @@ include('includes/topbar.php');
                         while ($row = mysqli_fetch_assoc($query_run)) {
                     ?>
                             <tr>
-                                <td><p style="font-size: 13px;"><?php echo $counter ?></p></td>
+                                <td>
+                                    <p style="font-size: 13px;"><?php echo $counter ?></p>
+                                </td>
                                 <td>
                                     <p style="font-size: 14px;">
-                                    <?php echo $row['vslaName']; ?>
+                                        <?php echo $row['vslaName']; ?>
                                     </p>
                                 </td>
-                             
+
                                 <td>
-                                <p style="font-size: 14px;">
-                                    No. of members: <?php echo $row['capacity']; ?><br>
-                                    Location: <?php echo $row['location']; ?><br>
-                                Status: <button class="btn-success" style="border-radius: 10%; height: 25px; font-size: 12px">
-                                        <?php echo $row['status']; ?></button> <br>
-                               
-                                Activity: <?php echo $row['activity']; ?><br>
-                                Division: <?php echo $row['division']; ?>
-                            </p>
-                                
+                                    <p style="font-size: 14px;">
+                                        No. of members: <?php echo $row['capacity']; ?><br>
+                                        Location: <?php echo $row['location']; ?><br>
+                                        Status: <button class="btn-success" style="border-radius: 10%; height: 25px; font-size: 12px">
+                                            <?php echo $row['status']; ?></button> <br>
+
+                                        Activity: <?php echo $row['activity']; ?><br>
+                                        Division: <?php echo $row['division']; ?>
+                                    </p>
+
                                 </td>
                                 <td>
-                                <p style="font-size: 14px;">
-                                    M: <?php echo $row['males']; ?><br/>
-                                    F: <?php echo $row['females']; ?>
-                                    </td>
-                        </p>
-                                <td>
-                                   <p style="font-size: 14px;">
-                                        Savings: <?php echo $row['savings']; ?><br>
-                                Average age: <?php echo $row['averageage']; ?><br>
-                           
-                                   </p> 
+                                    <p style="font-size: 14px;">
+                                        M: <?php echo $row['males']; ?><br />
+                                        F: <?php echo $row['females']; ?>
                                 </td>
-                                <td><p style="font-size: 14px;"><?php echo $row['year']; ?></p></td>
-                                <td><p style="font-size: 13px;">
-                                    Shareouts:  <?php echo $row['shareouts']; ?><br>
-                                    Loans taken: <?php echo $row['loanstaken']; ?><br>
-                                    Loans returned: <?php echo $row['loansreturned']; ?><br>
                                 </p>
+                                <td>
+                                    <p style="font-size: 14px;">
+                                        Savings: <?php echo $row['savings']; ?><br>
+                                        Average age: <?php echo $row['averageage']; ?><br>
+
+                                    </p>
+                                </td>
+                                <td>
+                                    <p style="font-size: 14px;"><?php echo $row['year']; ?></p>
+                                </td>
+                                <td>
+                                    <p style="font-size: 13px;">
+                                        Shareouts: <?php echo $row['shareouts']; ?><br>
+                                        Loans taken: <?php echo $row['loanstaken']; ?><br>
+                                        Loans returned: <?php echo $row['loansreturned']; ?><br>
+                                    </p>
                                 </td>
 
                                 <td>
                                     <form action="editvsla.php" method="POST">
                                         <input type="hidden" name="edit_id" value="<?php echo $row['id']; ?>">
                                         <button type="submit" name="editbtn" class="btn btn-link">
-                                        <i style="color: green !important; cursor:pointer !important;" class="fas fa-fw fa-pen"></i>
+                                            <i style="color: green !important; cursor:pointer !important;" name="editbtn" class="fas fa-fw fa-pen"></i>
                                         </button>
                                     </form>
                                 </td>
@@ -116,6 +126,27 @@ include('includes/topbar.php');
                                         </button>
                                     </form>
                                 </td>
+
+                                <td>
+                                    <form method="POST">
+                                        <input type="hidden" name="vlsa_id" value="<?php echo $row['id']; ?>">
+                                        <button type="submit" class="btn btn-warning" name="decidebtn">Loansreturned</button>
+                                        </button>
+                                    </form>
+                                <br> <br>
+                                    <form method="POST">
+                                        <input type="hidden" name="vlsa_id" value="<?php echo $row['id']; ?>">
+                                        <button type="submit" class="btn btn-danger" name="ltbtn">Loanstaken</button>
+                                        </button>
+                                    </form>
+                                <br> <br>
+                                    <form method="POST">
+                                        <input type="hidden" name="vlsa_id" value="<?php echo $row['id']; ?>">
+                                        <button type="submit" class="btn btn-dark" name="benebtn">Beneficiary</button>
+                                        </button>
+                                    </form>
+                                </td>
+
 
 
                             </tr>
@@ -130,6 +161,65 @@ include('includes/topbar.php');
                     ?>
                 </tbody>
             </table>
+
+            <?php
+
+            if (isset($_POST['decidebtn'])) {
+                // $pred = ml_loan_returned($row['vslaName'], $row['division'], $row['location'], $row['capacity'], $row['averageage'], $row['status'], $row['activity'], $row['males'], $row['females'], $row['year'], $row['savings'], $row['shareouts'], $row['loanstaken'], $row['loansreturned']);
+                // echo $pred;
+                $query = "SELECT * FROM tbl_groups WHERE id=" . $_POST['vlsa_id'] . " LIMIT 1";
+                $query_run = mysqli_query($connection, $query);
+
+                $row = mysqli_fetch_assoc($query_run);
+                if ($row) {
+
+                    $pred = ml_loan_returned($row['vslaName'], $row['division'], $row['location'], $row['capacity'], $row['averageage'], $row['status'], 'Book%20making', $row['males'], $row['females'], $row['year'], $row['savings'], $row['loanstaken']);
+                    $pred = json_decode($pred, true)['prediction'][0];
+
+                    echo '<script> alert(' . $pred . ')</script>';
+                } else {
+                    echo "<div class='alert alert-danger'>Error</div>";
+                }
+            }?>
+            <?php
+            if (isset($_POST['ltbtn'])) {
+                // $pred = ml_loan_returned($row['vslaName'], $row['division'], $row['location'], $row['capacity'], $row['averageage'], $row['status'], $row['activity'], $row['males'], $row['females'], $row['year'], $row['savings'], $row['shareouts'], $row['loanstaken'], $row['loansreturned']);
+                // echo $pred;
+                $query = "SELECT * FROM tbl_groups WHERE id=" . $_POST['vlsa_id'] . " LIMIT 1";
+                $query_run = mysqli_query($connection, $query);
+
+                $row = mysqli_fetch_assoc($query_run);
+                if ($row) {
+
+                    $predlt = ml_loan($row['vslaName'], $row['division'], $row['location'], $row['capacity'], $row['averageage'], $row['status'], 'Book%20making', $row['males'], $row['females'], $row['year'], $row['savings']);
+                    $predlt = json_decode($predlt, true)['prediction'][0];
+
+                    echo '<script> alert(' . $predlt . ')</script>';
+                } else {
+                    echo "<div class='alert alert-danger'>Error</div>";
+                }
+            }
+            
+
+            ?>
+            <?php
+            if (isset($_POST['benebtn'])) {
+                
+                $query = "SELECT * FROM tbl_groups WHERE id=" . $_POST['vlsa_id'] . " LIMIT 1";
+                $query_run = mysqli_query($connection, $query);
+
+                $row = mysqli_fetch_assoc($query_run);
+                if ($row) {
+
+                    $predbene = ml_beneficiary($row['vslaName'], $row['division'], $row['location'], $row['capacity'], $row['averageage'], $row['status'], 'Book%20making', $row['males'], $row['females'], $row['year'], $row['savings'], $row['shareouts'], $row['loanstaken'], $row['loansreturned']);
+                    $predbene = json_decode($predbene, true)['prediction'][0];
+
+                    echo '<script> alert(' . $predbene . ')</script>';
+                } else {
+                    echo "<div class='alert alert-danger'>Error</div>";
+                }
+            }
+            ?>
             <div class="modal fade" id="vslaModal" role="dialog" aria-labelledby="exampleModalLabel" tabindex="-1">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content" style="width: 700px !important;">
@@ -188,7 +278,7 @@ include('includes/topbar.php');
                                                 <option style="color: red;">INACTIVE</option>
                                             </select>
                                         </div>
-                                        
+
                                         <div class="form-group">
                                             <label><b>Activity</b></label>
                                             <input type="text" name="activity" class="form-control" required>
@@ -239,14 +329,7 @@ include('includes/topbar.php');
                                             <label><b>Average age</b></label>
                                             <input type="number" name="averageage" class="form-control" required>
                                         </div>
-                                        <div class="form-group">
-                                            <label><b>Credit unit</b></label>
-                                            <input type="number" name="creditunit" class="form-control" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><b>Rate of Lending</b></label>
-                                            <input type="text" name="rateofLending" class="form-control" placeholder="Rate of Lending" required>
-                                        </div>
+                            
                                         <div class="form-group">
                                             <label><b>Year</b></label>
                                             <input type="text" name="year" class="form-control" required>
@@ -265,10 +348,27 @@ include('includes/topbar.php');
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <input type="submit" name="add" class="btn btn-success" value="Add" style="float: right; width: 100px;">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="predModal" role="dialog" aria-labelledby="exampleModalLabel" tabindex="-1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"> Prediction results </h5>
+
+                        </div>
+                        <div class="modal-body">
+
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
                         </div>
                     </div>
                 </div>
