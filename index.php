@@ -57,7 +57,7 @@ include('includes/topbar.php');
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                    Total VSLAs</div>
+                                    Total VSLA Records</div>
                                 <?php
                                 require 'database/dbconfig.php';
                                 $query = "SELECT id FROM tbl_groups ORDER BY id";
@@ -89,7 +89,7 @@ include('includes/topbar.php');
 
                                     <?php
                                     require 'database/dbconfig.php';
-                                    $query = "SELECT id FROM tbl_chairperson ORDER BY id";
+                                    $query = "SELECT id FROM chairperson ORDER BY id";
                                     $query_run = mysqli_query($connection, $query);
 
                                     $row = mysqli_num_rows($query_run);

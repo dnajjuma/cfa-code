@@ -38,6 +38,7 @@ require("database/dbconfig.php");
                                     <a href="tro/login.php" type="submit" class="btn btn-link">TRO</a>
                                     <a href="chair/login.php" type="submit" class="btn btn-link">CHAIRPERSON</a>
                                     <a href="member/login.php" type="submit" class="btn btn-link">MEMBER</a>
+                                    <a href="login.php" type="submit" class="btn btn-link">ADMIN</a>
                                     <hr>
                                 </form>
 

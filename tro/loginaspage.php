@@ -33,21 +33,12 @@ require("database/dbconfig.php");
 
                                 <form class="user" method="POST">
                                    
-                                    <div class="form-group">
-                                            <label><b>Select User</b></label>
-                                            <select name="user_type" class="form-control" required>
-                                                <option> -- </option>
-                                                <option> TRO </option>
-                                                <option> Chairperson </option>
-                                                <option> Member </option>
+                                 
 
-                                               
-                                                        
-                                            </select>
-                                        </div>
-                                    
-
-                                    <a href="login.php" type="submit" class="btn btn-link">Continue</a>
+                                    <a href="tro/login.php" type="submit" class="btn btn-link">TRO</a>
+                                    <a href="chair/login.php" type="submit" class="btn btn-link">CHAIRPERSON</a>
+                                    <a href="member/login.php" type="submit" class="btn btn-link">MEMBER</a>
+                                    <a href="login.php" type="submit" class="btn btn-link">ADMIN</a>
                                     <hr>
                                 </form>
 

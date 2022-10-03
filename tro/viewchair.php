@@ -13,7 +13,7 @@ include('includes/topbar.php');
     if (isset($_POST['deletebtn'])) {
         $id = $_POST['delete_id'];
 
-        $query = "DELETE FROM tbl_chairperson WHERE id=" . $id;
+        $query = "DELETE FROM chairperson WHERE id=" . $id;
         $result = mysqli_query($connection, $query);
 
         if ($result) {
@@ -28,7 +28,7 @@ include('includes/topbar.php');
 
         <?php
 
-        $query = "SELECT * FROM tbl_chairperson";
+        $query = "SELECT * FROM chairperson";
         $query_run = mysqli_query($connection, $query);
         $counter = 1;
         ?>

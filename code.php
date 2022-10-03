@@ -144,7 +144,7 @@ if (isset($_POST['updatebtn7'])) {
 	$loanstaken = $_POST['edit_loanstaken'];
 	$loansreturned = $_POST['edit_loansreturned'];
 
-	$query = "UPDATE tbl_groups SET vslaName='$vsla', capacity='$capacity', location='$location', chair='$chair', status='$status', meeting='$meeting', activity='$activity', males='$males', females='$females', savings='$savings', averageage='$averageage', creditunit='$creditunit', rateofLending='$rateofLending', year='$year', shareouts='$shareouts', loanstaken='$loanstaken', loansreturned='$loansreturned' WHERE id='$id' ";
+	$query = "UPDATE tbl_groups SET vslaName='$vsla', capacity='$capacity', location='$location', chair='$chair', status='$status', meeting='$meeting', activity='$activity', males='$males', females='$females', savings='$savings', averageage='$averageage', year='$year', shareouts='$shareouts', loanstaken='$loanstaken', loansreturned='$loansreturned' WHERE id='$id' ";
 	$query_run = mysqli_query($connection,$query);
 
 	if ($query_run) {
@@ -190,10 +190,10 @@ if (isset($_POST['updatebtn6'])) {
 
 	if ($query_run) {
 		$_SESSION['success'] = "<div class='alert alert-success'>Your details have been updated</div>";
-		header('Location: view_chair.php');
+		header('Location: viewchair.php');
 	}else{
 		$_SESSION['status'] = "<div class='alert alert-danger'>Your details have NOT been updated</div>";
-		header('Location: view_chair.php');
+		header('Location: viewchair.php');
 	}
 
 }

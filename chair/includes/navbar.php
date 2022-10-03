@@ -68,7 +68,7 @@
 
     
     <li class="nav-item">
-        <a class="nav-link collapsed" href="funds.php">
+        <a class="nav-link collapsed" href="apply.php">
             <!-- <i class="fa-solid fa-calendar"></i> -->
             <i style="color: white !important;" class="fas fa-fw fa-calendar"></i>
             <span style="color: white !important;">Apply for fund</span>

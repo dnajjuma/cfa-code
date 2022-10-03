@@ -29,10 +29,10 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
-            $sql = "INSERT INTO files (name, size, downloads) VALUES ('$filename', $size, 0)";
+            $sql = "INSERT INTO kcca (name, size, downloads) VALUES ('$filename', $size, 0)";
             if (mysqli_query($conn, $sql)) {
                 // echo "File uploaded successfully";
-                header('Location: apply.php');
+                header('Location: viewbudgets.php');
             }
         } else {
             echo "Failed to upload file.";

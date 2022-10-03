@@ -55,15 +55,15 @@ include('includes/topbar.php');
 
 
 
-    $query = "INSERT INTO tbl_chairperson (`name`,`contact`,`address`,`image_url`) VALUES ('$name','$contact','$address','$new_img_name')";
+    $query = "INSERT INTO chairperson (`name`,`contact`,`address`,`image_url`) VALUES ('$name','$contact','$address','$new_img_name')";
     $query_run = mysqli_query($connection, $query);
 
     if ($query_run) {
         $_SESSION['success'] = "<div class='alert alert-success'>Chairperson has been registered successfully</div>";
-        header('Location: view_chair.php');
+        header('Location: viewchair.php');
     } else {
         $_SESSION['status'] = "<div class='alert alert-danger'>Sorry! Chairperson could NOT be added</div>";
-        header('Location: view_chair.php');
+        header('Location: viewchair.php');
     }
 
 

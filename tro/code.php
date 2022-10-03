@@ -190,10 +190,10 @@ if (isset($_POST['updatebtn6'])) {
 
 	if ($query_run) {
 		$_SESSION['success'] = "<div class='alert alert-success'>Your details have been updated</div>";
-		header('Location: view_chair.php');
+		header('Location: viewchair.php');
 	}else{
 		$_SESSION['status'] = "<div class='alert alert-danger'>Your details have NOT been updated</div>";
-		header('Location: view_chair.php');
+		header('Location: viewchair.php');
 	}
 
 }
