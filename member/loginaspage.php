@@ -32,8 +32,6 @@ require("database/dbconfig.php");
                                 </div>
 
                                 <form class="user" method="POST">
-                                   
-                                 
 
                                     <a href="tro/login.php" type="submit" class="btn btn-link">TRO</a>
                                     <a href="chair/login.php" type="submit" class="btn btn-link">CHAIRPERSON</a>

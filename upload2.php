@@ -11,6 +11,7 @@ $files = mysqli_fetch_all($result, MYSQLI_ASSOC);
 if (isset($_POST['save'])) { // if save button on the form is clicked
     // name of the uploaded file
     $filename = $_FILES['myfile']['name'];
+    $finyear = $_POST['finyear'];
     echo $filename;
     // destination of the file on the server
     $destination = 'uploads/' . $filename;
@@ -29,10 +30,10 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
-            $sql = "INSERT INTO kcca (name, size, downloads) VALUES ('$filename', $size, 0)";
+            $sql = "INSERT INTO kcca (name, size, downloads, finyear) VALUES ('$filename', $size, 0, $finyear)";
             if (mysqli_query($conn, $sql)) {
                 // echo "File uploaded successfully";
-                header('Location: viewbudgets.php');
+                header('Location: call.php');
             }
         } else {
             echo "Failed to upload file.";

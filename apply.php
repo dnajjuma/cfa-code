@@ -17,7 +17,7 @@ include('includes/topbar.php');
            <p>All new available funds wil appear here.</p>
             <div class="container">
                 <?php
-                $query = "SELECT * FROM kcca";
+                $query = "SELECT * FROM kcca ORDER BY finyear DESC";
                 $query_run = mysqli_query($connection, $query);
                 $counter = 1;
                 ?>
@@ -28,8 +28,10 @@ include('includes/topbar.php');
                             <tr>
                                 <th>#</th>
                                 <th> Call </th>
+                                <th>Financial Year</th>
                                 <th> View </th>
                                 <th> Download </th>
+                               
 
                                 <!-- <th> ACTION </th> -->
                                 <!-- <th> ACTION </th> -->
@@ -45,12 +47,16 @@ include('includes/topbar.php');
                                     <tr>
                                         <td><?php echo $counter ?></td>
                                         <td><?php echo $row['name']; ?></td>
+                                        <td><?php echo $row['finyear']; ?></td>
 
                                         <td><a href="uploads/<?php echo $row['name']; ?>" target="_blank">View</a></td>
 
 
                                         <td><a href="uploads/<?php echo $row['name']; ?>" download>Download</td>
 
+                                        
+                                        
+                                    
                                     </tr>
 
                             <?php
@@ -75,22 +81,45 @@ include('includes/topbar.php');
                 <div class="page-wrapper">
                     <div class="card">
                         <div class="card-title">
-                            <h4 style="padding-left: 30px; padding-top: 20px;">Draft application letter</h4>
+                            <h4 style="padding-left: 30px; padding-top: 20px;">Upload VSLA details</h4>
+                            <!-- <p style="padding-left: 30px; padding-top: 10px;"> (Only spreadsheets are allowed please)</p> -->
                         </div>
                         <div class="card-body">
-                            <div class="container-fluid" style="width: 500px; padding: 10px;">
-                                <form style="color:black !important;" action="upload.php" class="mb-4" method="POST" enctype="multipart/form-data">
-                                    <div class="form-group">
+                            <div class="container-fluid" style="width: 400px; padding: 10px;">
+                                <form style="color:black !important;" action="upload-script.php" class="mb-4" method="POST" enctype="multipart/form-data">
+                                    <!-- <div class="form-group">
                                         <a href="newvslaa.php" data-toggle="modal" data-target="#vslaModal">Click here to fill application form >> </a>
-                                    </div>
+                                    </div> -->
+                                   <p>NB: Only files labeled with VSLA name shall be assessed.</p>
+                                   
+                                   <p>Upload ZIP folder containing:
+                                    <ol>
+                                        
+                                    <li>VSLA RECORDS</li>
+                                    <li>MEMBER DETAILS</li>
+                                    <li>BUSINESS WORK PLAN</li>
+                                       
+                                    </ol> 
+                                </p>
+                                   <div class="form-group" style="margin-bottom: 50px;">
+                                        
+                                       <!-- <label>1. Business Workplan &nbsp;&nbsp;&nbsp;<small style="color: grey">(pdf)</small></label> -->
+                                       <input type="file" name="file_name[]" multiple>
 
+                                    </div>
+                                    <!-- <div class="form-group" style="margin-bottom: 50px;">
+                                        
+                                       <label>2. Member details &nbsp;&nbsp;&nbsp; <small style="color: grey">(Spreadsheet)</small> </label>
+                                        <input type="file" name="myfile[]" id="fileToUpload">
+
+                                    </div>
                                     <div class="form-group" style="margin-bottom: 50px;">
+                                        
+                                       <label>3. VSLA Records &nbsp;&nbsp;&nbsp; <small style="color: grey">(Spreadsheet)</small></label>
+                                        <input type="file" name="myfile[]" id="fileToUpload">
 
-                                        <!-- <textarea type="text" name="msg" style="height: 200px;" class="form-control" placeholder="Type message here" required></textarea> -->
-                                        <input type="file" name="myfile" id="fileToUpload">
-
-                                    </div>
-                                    <input type="submit" name="save" class="btn btn-success" value="Send" style="float: right; width: 100px;">
+                                    </div> -->
+                                    <input type="submit" name="submit" class="btn btn-primary" value="Apply" style="float: right; width: 100px;">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 </form>
                             </div>
@@ -104,7 +133,7 @@ include('includes/topbar.php');
 
     </div>
 </div>
-<div class="modal fade" id="vslaModal" role="dialog" aria-labelledby="exampleModalLabel" tabindex="-1">
+<!-- <div class="modal fade" id="vslaModal" role="dialog" aria-labelledby="exampleModalLabel" tabindex="-1">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content" style="width: 700px !important;">
                         <div class="modal-header">
@@ -240,21 +269,22 @@ include('includes/topbar.php');
                     </div>
                 </div>
             </div>
-        <?php
-        include('includes/scripts.php');
-        include('includes/footer.php');
-        ?>
+       
 
 
     </div>
-</div>
+</div> -->
 
 </div>
 
 
 
 
-
+<!-- <script type="text/javascript">
+function myFunction() {
+  document.getElementById("apper").style.color = "red";
+}
+</script> -->
 
 
 

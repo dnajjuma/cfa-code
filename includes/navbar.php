@@ -46,18 +46,61 @@
 
     </li>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="announce.php">
+        <a class="nav-link collapsed" href="viewbudgets.php">
             <!-- <i class="fa-solid fa-calendar"></i> -->
-            <i style="color: white !important;" class="fas fa-fw fa-calendar"></i>
-            <span style="color: white !important;">Announce Beneficiaries</span>
+            <i style="color: white !important;" class="fas fa-fw fa-certificate"></i>
+            <span style="color: white !important;"> Upload KCCA budget </span>
         </a>
 
     </li>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="viewbudgets.php">
+        <a class="nav-link collapsed" href="call.php">
             <!-- <i class="fa-solid fa-calendar"></i> -->
             <i style="color: white !important;" class="fas fa-fw fa-calendar"></i>
-            <span style="color: white !important;">Manage KCCA budget</span>
+            <span style="color: white !important;">Call for Applications </span>
+        </a>
+
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="applications.php">
+            <!-- <i class="fa-solid fa-calendar"></i> -->
+            <i style="color: white !important;" class="fas fa-fw fa-calendar"></i>
+            <span style="color: white !important;"> View applications</span>
+        </a>
+
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="fundallocation.php">
+            <!-- <i class="fa-solid fa-calendar"></i> -->
+            <i style="color: white !important;" class="fas fa-fw fa-calendar"></i>
+            <span style="color: white !important;"> Fund allocation </span>
+        </a>
+
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="source.php">
+            <!-- <i class="fa-solid fa-calendar"></i> -->
+            <i style="color: white !important;" class="fas fa-fw fa-clipboard-list"></i>
+            <span style="color: white !important;">Announce Beneficiaries</span>
+        </a>
+
+    </li>
+    
+    
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="beneficiaries.php">
+            <!-- <i class="fa-solid fa-calendar"></i> -->
+            <i style="color: white !important;" class="fas fa-fw fa-pen"></i>
+            <span style="color: white !important;"> Beneficiaries </span>
+        </a>
+
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="apply.php">
+            <!-- <i class="fa-solid fa-calendar"></i> -->
+            <i style="color: white !important;" class="fas fa-fw fa-calendar"></i>
+            <span style="color: white !important;">Apply for fund</span>
         </a>
 
     </li>
@@ -85,22 +128,8 @@
         </a>
 
     </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="apply.php">
-            <!-- <i class="fa-solid fa-calendar"></i> -->
-            <i style="color: white !important;" class="fas fa-fw fa-calendar"></i>
-            <span style="color: white !important;">Apply for fund</span>
-        </a>
-
-    </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="applications.php">
-            <!-- <i class="fa-solid fa-calendar"></i> -->
-            <i style="color: white !important;" class="fas fa-fw fa-calendar"></i>
-            <span style="color: white !important;"> View applications</span>
-        </a>
-
-    </li>
+    
+   
     <li class="nav-item">
         <a class="nav-link collapsed" href="loancalc.php">
             <!-- <i class="fa-solid fa-calendar"></i> -->

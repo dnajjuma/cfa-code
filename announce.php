@@ -14,7 +14,7 @@ if(isset($_POST['mobile']) && isset($_POST['msg'])){
 
 // Your Account SID and Auth Token from twilio.com/console
 $sid = 'ACf71f444f2245d989036b1132064297a0';
-$token = '10476857fc6bab4dfec209d5cd0d6d6a';
+$token = '5d9c19275789fa9ee98d0e171166bf1e';
 $client = new Client($sid, $token);
 
 // Use the client to do fun stuff like send text messages!
@@ -32,6 +32,7 @@ $message = $client->messages->create(
 
 if($message->sid){
 echo "Message sent!";
+// echo $message;
 }
 
 

@@ -12,7 +12,7 @@ include('includes/topbar.php');
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">TRO Dashboard</h1>
+        <h1 class="h3 mb-0 text-gray-800">Admin Dashboard</h1>
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
     </div>
@@ -57,7 +57,7 @@ include('includes/topbar.php');
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                    Total VSLAs</div>
+                                    Total VSLA Records</div>
                                 <?php
                                 require 'database/dbconfig.php';
                                 $query = "SELECT id FROM tbl_groups ORDER BY id";
@@ -89,7 +89,7 @@ include('includes/topbar.php');
 
                                     <?php
                                     require 'database/dbconfig.php';
-                                    $query = "SELECT id FROM tbl_chairperson ORDER BY id";
+                                    $query = "SELECT id FROM chairperson ORDER BY id";
                                     $query_run = mysqli_query($connection, $query);
 
                                     $row = mysqli_num_rows($query_run);
@@ -180,7 +180,7 @@ include('includes/topbar.php');
                 function drawChart() {
                     var data = google.visualization.arrayToDataTable([
 
-                        ['VSLA', 'No. of VSLAs'],
+                        ['Year', 'No. of VSLAs'],
                         <?php
                         $query = "SELECT * from tbl_groups";
                         $exec = mysqli_query($con, $query);
@@ -188,8 +188,10 @@ include('includes/topbar.php');
                             echo "['" . $row['year'] . "'," . $row['id'] . "],";
                         }
                         ?>
+                        
 
                     ]);
+                    
 
                     var options = {
 
@@ -202,6 +204,8 @@ include('includes/topbar.php');
                     var chart = new google.visualization.PieChart(document.getElementById("year_div"));
                     chart.draw(data, options);
                 }
+
+
             </script>
 
 
@@ -428,6 +432,30 @@ include('includes/topbar.php');
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-subtitle">2016</h5>
+                    <select name="year" class="form-control" required>
+                            <option value="">Select Year</option>
+                            <?php
+                            $query = "SELECT year FROM tbl_groups GROUP BY year DESC";
+                            $query_run = $connection->query($query);
+                            if ($query_run->num_rows > 0) {
+                                while ($optionData = $query_run->fetch_assoc()) {
+                                    $option = $optionData['year'];
+                            ?>
+                                    <?php
+                                    //selected option
+                                    if (!empty($name) && $name == $option) {
+                                        // selected option
+                                    ?>
+                                        <option value="<?php echo $option; ?>" selected><?php echo $option; ?> </option>
+                                    <?php
+                                        continue;
+                                    } ?>
+                                    <option value="<?php echo $option; ?>"><?php echo $option; ?> </option>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </select>
                     <div id="line_div" style="width: 990px; height: 500px">
 
                     </div>
